@@ -82,13 +82,13 @@ def drawing(sudoku):
             screen.blit(text, [22 + j + shift, 20 + i + shift])
 
 
-def solve(su):
-    find = find_(su.board)
-    if not find:
+def solve(su): # backtracking algo
+    find = find_(su.board) # looking for an unoccupied cell
+    if not find:           # if there is no such - Sudoku solved
         return True
 
-    for i in [str(i) for i in range(1, 10)]:
-        if valid_(su.board, i, find):
+    for i in [str(i) for i in range(1, 10)]: # going trough numbers from 1 to 9
+        if valid_(su.board, i, find): # if we can insert number going to next step
             su.board[find[0]][find[1]][0] = i
 
             intermediate_steps.append(deepcopy(su.board))
